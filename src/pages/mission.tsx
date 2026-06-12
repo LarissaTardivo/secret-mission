@@ -10,10 +10,11 @@ const Mission = () => {
 
   const [name, setName] = useState("");
   const [accepted, setAccepted] = useState(false);
+  const [personType, setPersonType] = useState<"man" | "woman" | "couple" | "">();
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const bgColor = useColorModeValue("white", "gray.800");
-  const gradientBg = "linear(to-br, pink.50, orange.50)";
+  const gradientBg = "linear(to-br, brandSoftOrange, brandSoftBlue)";
 
   useEffect(() => {
     audioRef.current = new Audio("/sounds/applause.mp3");
@@ -24,17 +25,30 @@ const Mission = () => {
     audioRef.current?.play();
   };
 
+  const finalContent = {
+    man: "nós estamos noivos e queremos saber se você aceita ser nosso padrinho de Casamento?",
+    woman: "nós estamos noivos e queremos saber se você aceita ser nossa madrinha de Casamento?",
+    couple: "nós estamos noivos e queremos saber se vocês aceitam ser nossos padrinhos de Casamento?",
+  };
+
+  const sharedProps = { name, setName, nextStep, accept: handleAccept, accepted, personType, setPersonType };
+
   const stepsContent = [
     {
       label: "Início",
       content: (
         <MissionStep
           step={{ type: "input", title: "Missão Secreta 🕵🏼‍♂️", content: "Para começar, como você quer ser chamado?" }}
-          name={name}
-          setName={setName}
-          nextStep={nextStep}
-          accept={handleAccept}
-          accepted={accepted}
+          {...sharedProps}
+        />
+      ),
+    },
+    {
+      label: "Identidade",
+      content: (
+        <MissionStep
+          step={{ type: "gender-select", title: "Missão Secreta 🕵🏼‍♂️", content: "Você está acessando essa missão como:" }}
+          {...sharedProps}
         />
       ),
     },
@@ -43,11 +57,7 @@ const Mission = () => {
       content: (
         <MissionStep
           step={{ type: "choice", title: "Missão Secreta 🕵🏼‍♂️", content: "Agora que já sabemos quem você é, vamos apresentar a missão secreta. Nos promete guardar segredo? 🤫" }}
-          name={name}
-          setName={setName}
-          nextStep={nextStep}
-          accept={handleAccept}
-          accepted={accepted}
+          {...sharedProps}
         />
       ),
     },
@@ -56,11 +66,7 @@ const Mission = () => {
       content: (
         <MissionStep
           step={{ type: "info", title: "Relatório Confidencial", content: "Saiba que se você está participando dessa missão, significa que é muito importante para nós." }}
-          name={name}
-          setName={setName}
-          nextStep={nextStep}
-          accept={handleAccept}
-          accepted={accepted}
+          {...sharedProps}
         />
       ),
     },
@@ -69,11 +75,7 @@ const Mission = () => {
       content: (
         <MissionStep
           step={{ type: "info", title: "Relatório Confidencial", content: "O agente principal dessa missão é Deus, e..." }}
-          name={name}
-          setName={setName}
-          nextStep={nextStep}
-          accept={handleAccept}
-          accepted={accepted}
+          {...sharedProps}
         />
       ),
     },
@@ -86,11 +88,7 @@ const Mission = () => {
       content: (
         <MissionStep
           step={{ type: "info", title: "Missão Obra Nova", content: "Eis que ela já surge, não a vedes?" }}
-          name={name}
-          setName={setName}
-          nextStep={nextStep}
-          accept={handleAccept}
-          accepted={accepted}
+          {...sharedProps}
         />
       ),
     },
@@ -98,12 +96,8 @@ const Mission = () => {
       label: "Mensagem",
       content: (
         <MissionStep
-          step={{ type: "info", title: "Missão Obra Nova", content: "Essa missão inicia hoje e continua no dia 01/05/2027, entre nós e Deus no altar e queremos te fazer um convite 🥰" }}
-          name={name}
-          setName={setName}
-          nextStep={nextStep}
-          accept={handleAccept}
-          accepted={accepted}
+          step={{ type: "info", title: "Missão Obra Nova", content: "Essa missão inicia hoje e continua no dia 10/07/2027, entre nós e Deus no altar e queremos te fazer um convite 🥰" }}
+          {...sharedProps}
         />
       ),
     },
@@ -112,11 +106,7 @@ const Mission = () => {
       content: (
         <MissionStep
           step={{ type: "confirm", title: "Mas antes disso...", content: "Você promete estar ao nosso lado nesta nova jornada nos apoiando e intercedendo por nós sempre?" }}
-          name={name}
-          setName={setName}
-          nextStep={nextStep}
-          accept={handleAccept}
-          accepted={accepted}
+          {...sharedProps}
         />
       ),
     },
@@ -125,11 +115,7 @@ const Mission = () => {
       content: (
         <MissionStep
           step={{ type: "countdown", title: "Então vem aí a sua missão", content: "O grande momento em..." }}
-          name={name}
-          setName={setName}
-          nextStep={nextStep}
-          accept={handleAccept}
-          accepted={accepted}
+          {...sharedProps}
         />
       ),
     },
@@ -137,12 +123,8 @@ const Mission = () => {
       label: "O Pedido",
       content: (
         <MissionStep
-          step={{ type: "final", title: "Missão secreta", content: "Você aceita ser nossa Madrinha de Casamento?" }}
-          name={name}
-          setName={setName}
-          nextStep={nextStep}
-          accept={handleAccept}
-          accepted={accepted}
+          step={{ type: "final", title: "Missão secreta", content: finalContent[personType as keyof typeof finalContent] ?? finalContent.couple }}
+          {...sharedProps}
         />
       ),
     },

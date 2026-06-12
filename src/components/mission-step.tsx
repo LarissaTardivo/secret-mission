@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Button, Input, Text, VStack } from "@chakra-ui/react";
 import Confetti from "react-confetti";
 
+type PersonType = "man" | "woman" | "couple" | "";
+
 interface Props {
   step: any;
   name: string;
@@ -9,9 +11,11 @@ interface Props {
   nextStep: () => void;
   accept: () => void;
   accepted: boolean;
+  personType?: PersonType;
+  setPersonType?: (type: PersonType) => void;
 }
 
-export default function MissionStep({ step, name, setName, nextStep, accept, accepted }: Props) {
+export default function MissionStep({ step, name, setName, nextStep, accept, accepted, setPersonType }: Props) {
   const [count, setCount] = useState(3);
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
@@ -44,9 +48,9 @@ export default function MissionStep({ step, name, setName, nextStep, accept, acc
             placeholder="Digite seu nome secreto"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            borderColor="pink.200"
+            borderColor="brandBlue"
           />
-          <Button w="full" bgGradient="linear(to-r, pinkGradientStart, pinkGradientEnd)" color="white" onClick={nextStep}>
+          <Button w="full" bgGradient="linear(to-r, brandOrange, brandYellow)" color="white" onClick={nextStep}>
             Confirmar
           </Button>
         </VStack>
@@ -57,8 +61,8 @@ export default function MissionStep({ step, name, setName, nextStep, accept, acc
         <VStack textAlign="center">
           <Text fontSize="2xl" fontWeight="bold">{step.title}</Text>
           <Text mb="1rem">{step.content}</Text>
-          <Button w="full" colorScheme="pink" onClick={nextStep}>Sim, com certeza</Button>
-          <Button w="full" colorScheme="pink" variant="outline" onClick={nextStep}>Claro que sim</Button>
+          <Button w="full" colorScheme="orange" onClick={nextStep}>Sim, com certeza</Button>
+          <Button w="full" colorScheme="orange" variant="outline" onClick={nextStep}>Claro que sim</Button>
         </VStack>
       );
 
@@ -67,7 +71,7 @@ export default function MissionStep({ step, name, setName, nextStep, accept, acc
         <VStack textAlign="center">
           <Text fontSize="2xl" fontWeight="bold">{step.title}</Text>
           <Text>{step.content}</Text>
-          <Button mt="1rem" w="full" colorScheme="pink" onClick={nextStep}>Continuar</Button>
+          <Button mt="1rem" w="full" colorScheme="orange" onClick={nextStep}>Continuar</Button>
         </VStack>
       );
 
@@ -76,7 +80,7 @@ export default function MissionStep({ step, name, setName, nextStep, accept, acc
         <VStack textAlign="center">
           <Text mb="0.5rem" fontSize="2xl" fontWeight="bold">{step.title}</Text>
           <Text>{step.content}</Text>
-          <Button mt="1rem" w="full" bgGradient="linear(to-r, pinkGradientStart, pinkGradientEnd)" color="white" onClick={nextStep}>
+          <Button mt="1rem" w="full" bgGradient="linear(to-r, brandOrange, brandYellow)" color="white" onClick={nextStep}>
             Prometo 💖
           </Button>
         </VStack>
@@ -86,7 +90,7 @@ export default function MissionStep({ step, name, setName, nextStep, accept, acc
       return (
         <VStack textAlign="center">
           <Text fontSize="2xl" fontWeight="bold">{step.title}</Text>
-          <Text fontSize="6xl" fontWeight="bold" color="pink.400">{count}</Text>
+          <Text fontSize="6xl" fontWeight="bold" color="brandOrange">{count}</Text>
         </VStack>
       );
 
@@ -102,14 +106,31 @@ export default function MissionStep({ step, name, setName, nextStep, accept, acc
             />
           )}
           <Text fontSize="2xl" fontWeight="bold">{step.title}</Text>
-          <Text fontSize="lg" color="pink.500">{name}, {step.content}</Text>
+          <Text fontSize="lg" color="brandBlue">{name}, {step.content}</Text>
           {!accepted ? (
-            <Button w="full" bgGradient="linear(to-r, pinkGradientStart, pinkGradientEnd)" color="white" fontWeight="bold" onClick={accept}>
+            <Button w="full" bgGradient="linear(to-r, brandOrange, brandYellow)" color="white" fontWeight="bold" onClick={accept}>
               SIM 💖
             </Button>
           ) : (
-            <Text fontSize="xl" fontWeight="bold" color="pink.600">🎉 MISSÃO CONCLUÍDA!</Text>
+            <Text fontSize="xl" fontWeight="bold" color="brandOrange">🎉 MISSÃO CONCLUÍDA!</Text>
           )}
+        </VStack>
+      );
+
+    case "gender-select":
+      return (
+        <VStack textAlign="center">
+          <Text fontSize="2xl" fontWeight="bold">{step.title}</Text>
+          <Text mb="1rem">{step.content}</Text>
+          <Button w="full" bgGradient="linear(to-r, brandOrange, brandYellow)" color="white" onClick={() => { setPersonType?.("man"); nextStep(); }}>
+            Homem
+          </Button>
+          <Button w="full" bgGradient="linear(to-r, brandOrange, brandYellow)" color="white" onClick={() => { setPersonType?.("woman"); nextStep(); }}>
+            Mulher
+          </Button>
+          <Button w="full" colorScheme="orange" variant="outline" onClick={() => { setPersonType?.("couple"); nextStep(); }}>
+            Somos um casal
+          </Button>
         </VStack>
       );
 

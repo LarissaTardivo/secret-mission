@@ -7,9 +7,11 @@ import "@fontsource/montserrat/700.css";
 
 const theme = extendTheme({
   colors: {
-    pinkGradientStart: "#ff6f91",
-    pinkGradientEnd: "#ff9671",
-    softPink: "#fff0f5",
+    brandOrange: "#f07a22",
+    brandBlue: "#4e6d80",
+    brandYellow: "#f6b83d",
+    brandSoftOrange: "#fff3e8",
+    brandSoftBlue: "#e8f0f5",
     darkGray: "#2f2f2f",
   },
   fonts: {
