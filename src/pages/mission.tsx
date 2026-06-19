@@ -100,7 +100,7 @@ const Mission = () => {
     },
     {
       label: "Missão",
-      content: <VideoStep src="/videos/secret-mission-video.mp4" nextStep={nextStep} />,
+      content: <VideoStep src="/videos/new-secret-mission-video.mp4" nextStep={nextStep} />,
     },
     {
       label: "Mensagem",
