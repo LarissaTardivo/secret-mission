@@ -58,7 +58,7 @@ const Mission = () => {
       label: "Desafio",
       content: (
         <MissionStep
-          step={{ type: "choice", title: "Missão Secreta 🕵🏼‍♂️", content: "Agora que já sabemos quem você é, vamos apresentar a missão secreta." }}
+          step={{ type: "choice", title: "Missão Secreta 🕵🏼‍♂️", content: "Agora que já sabemos quem você é, vamos apresentar a missão secreta. Será que você tem coragem de realizá-la?" }}
           {...sharedProps}
         />
       ),
@@ -106,7 +106,7 @@ const Mission = () => {
       label: "Mensagem",
       content: (
         <MissionStep
-          step={{ type: "info", title: "Missão Secreta", content: "Continue para revelar" }}
+          step={{ type: "info", title: "Missão Secreta 🕵🏼‍♂️", content: "Continue para revelar" }}
           {...sharedProps}
         />
       ),
@@ -115,7 +115,7 @@ const Mission = () => {
       label: "Mensagem",
       content: (
         <MissionStep
-          step={{ type: "info", title: "Missão Secreta", content: "Essa missão inicia hoje e continua no dia 10/07/2027, entre nós e Deus no altar e queremos te fazer um convite 🥰" }}
+          step={{ type: "info", title: "Missão Secreta 🕵🏼‍♂️", content: "Essa missão inicia hoje e continua no dia 10/07/2027, entre nós e Deus no altar e queremos te fazer um convite 🥰" }}
           {...sharedProps}
         />
       ),
@@ -142,7 +142,7 @@ const Mission = () => {
       label: "O Pedido",
       content: (
         <MissionStep
-          step={{ type: "final", title: "Missão secreta", content: finalContent[personType as keyof typeof finalContent] ?? finalContent.couple }}
+          step={{ type: "final", title: "Missão secreta🕵🏼‍♂️", content: finalContent[personType as keyof typeof finalContent] ?? finalContent.couple }}
           {...sharedProps}
         />
       ),
