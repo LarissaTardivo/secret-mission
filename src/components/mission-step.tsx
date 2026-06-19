@@ -36,8 +36,6 @@ export default function MissionStep({ step, name, setName, nextStep, accept, acc
     }
   }, [count, nextStep, step.type]);
 
-  const renderConfetti = step.type === "final" && accepted
-
   switch (step.type) {
     case "input":
       return (
@@ -95,25 +93,26 @@ export default function MissionStep({ step, name, setName, nextStep, accept, acc
       );
 
     case "final":
-      return (
-        <VStack textAlign="center">
-          {renderConfetti && (
+      if (accepted) {
+        return (
+          <VStack textAlign="center">
             <Confetti
               width={windowSize.width}
               height={windowSize.height}
               recycle={false}
               numberOfPieces={300}
             />
-          )}
+            <Text fontSize="3xl" fontWeight="bold" color="brandOrange">UHUUUUL! 🎉🎉🎉</Text>
+          </VStack>
+        );
+      }
+      return (
+        <VStack textAlign="center">
           <Text fontSize="2xl" fontWeight="bold">{step.title}</Text>
           <Text fontSize="lg" color="brandBlue">{name}, {step.content}</Text>
-          {!accepted ? (
-            <Button w="full" bgGradient="linear(to-r, brandOrange, brandYellow)" color="white" fontWeight="bold" onClick={accept}>
-              SIM 💖
-            </Button>
-          ) : (
-            <Text fontSize="xl" fontWeight="bold" color="brandOrange">🎉 MISSÃO CONCLUÍDA!</Text>
-          )}
+          <Button w="full" bgGradient="linear(to-r, brandOrange, brandYellow)" color="white" fontWeight="bold" onClick={accept}>
+            SIM 💖
+          </Button>
         </VStack>
       );
 

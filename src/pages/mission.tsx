@@ -3,6 +3,8 @@ import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import { useSteps } from "chakra-ui-steps";
 import { motion, AnimatePresence } from "framer-motion";
 import VideoStep from "../components/video-step";
+import GameStep from "../components/game-step";
+import DrawStep from "../components/draw-step";
 import MissionStep from "../components/mission-step";
 
 const Mission = () => {
@@ -26,9 +28,9 @@ const Mission = () => {
   };
 
   const finalContent = {
-    man: "nós estamos noivos e queremos saber se você aceita ser nosso padrinho de Casamento?",
-    woman: "nós estamos noivos e queremos saber se você aceita ser nossa madrinha de Casamento?",
-    couple: "nós estamos noivos e queremos saber se vocês aceitam ser nossos padrinhos de Casamento?",
+    man: "em breve estaremos noivos e queremos saber se você aceita ser nosso padrinho de Casamento?",
+    woman: "em breve estaremos noivos e queremos saber se você aceita ser nossa madrinha de Casamento?",
+    couple: "em breve estaremos noivos e queremos saber se vocês aceitam ser nossos padrinhos de Casamento?",
   };
 
   const sharedProps = { name, setName, nextStep, accept: handleAccept, accepted, personType, setPersonType };
@@ -56,7 +58,7 @@ const Mission = () => {
       label: "Desafio",
       content: (
         <MissionStep
-          step={{ type: "choice", title: "Missão Secreta 🕵🏼‍♂️", content: "Agora que já sabemos quem você é, vamos apresentar a missão secreta. Nos promete guardar segredo? 🤫" }}
+          step={{ type: "choice", title: "Missão Secreta 🕵🏼‍♂️", content: "Agora que já sabemos quem você é, vamos apresentar a missão secreta." }}
           {...sharedProps}
         />
       ),
@@ -65,7 +67,24 @@ const Mission = () => {
       label: "Mensagem",
       content: (
         <MissionStep
-          step={{ type: "info", title: "Relatório Confidencial", content: "Saiba que se você está participando dessa missão, significa que é muito importante para nós." }}
+          step={{ type: "info", title: "Relatório Confidencial", content: "Saiba que se está participando dessa missão, significa que você é muito importante." }}
+          {...sharedProps}
+        />
+      ),
+    },
+    {
+      label: "Habilidades",
+      content: <GameStep nextStep={nextStep} />,
+    },
+    {
+      label: "Desenho",
+      content: <DrawStep nextStep={nextStep} />,
+    },
+     {
+      label: "Mensagem",
+      content: (
+        <MissionStep
+          step={{ type: "info", title: "Relatório Confidencial", content: "Agora que você cumpriu dois dos desafios, vamos continuar nossa jornada." }}
           {...sharedProps}
         />
       ),
@@ -87,7 +106,7 @@ const Mission = () => {
       label: "Mensagem",
       content: (
         <MissionStep
-          step={{ type: "info", title: "Missão Obra Nova", content: "Eis que ela já surge, não a vedes?" }}
+          step={{ type: "info", title: "Missão Secreta", content: "Continue para revelar" }}
           {...sharedProps}
         />
       ),
@@ -96,7 +115,7 @@ const Mission = () => {
       label: "Mensagem",
       content: (
         <MissionStep
-          step={{ type: "info", title: "Missão Obra Nova", content: "Essa missão inicia hoje e continua no dia 10/07/2027, entre nós e Deus no altar e queremos te fazer um convite 🥰" }}
+          step={{ type: "info", title: "Missão Secreta", content: "Essa missão inicia hoje e continua no dia 10/07/2027, entre nós e Deus no altar e queremos te fazer um convite 🥰" }}
           {...sharedProps}
         />
       ),
