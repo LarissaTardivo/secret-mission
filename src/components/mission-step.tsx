@@ -109,7 +109,7 @@ export default function MissionStep({ step, name, setName, nextStep, accept, acc
       return (
         <VStack textAlign="center">
           <Text fontSize="2xl" fontWeight="bold">{step.title}</Text>
-          <Text fontSize="lg" color="brandBlue">{name}, {step.content}</Text>
+          <Text fontSize="lg" color="brandBlue">{name}, <Text as="span" fontWeight="bold">em breve estaremos noivos</Text>{step.content?.replace("em breve estaremos noivos", "")}</Text>
           <Button w="full" bgGradient="linear(to-r, brandOrange, brandYellow)" color="white" fontWeight="bold" onClick={accept}>
             SIM 💖
           </Button>
