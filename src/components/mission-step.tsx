@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { Button, Input, Text, VStack } from "@chakra-ui/react";
+﻿import { useEffect, useState } from "react";
+import { Button, Image, Input, Text, VStack } from "@chakra-ui/react";
 import Confetti from "react-confetti";
 
 type PersonType = "man" | "woman" | "couple" | "";
@@ -109,7 +109,8 @@ export default function MissionStep({ step, name, setName, nextStep, accept, acc
       return (
         <VStack textAlign="center">
           <Text fontSize="2xl" fontWeight="bold">{step.title}</Text>
-          <Text fontSize="lg" color="brandBlue">{name}, <Text as="span" fontWeight="bold">em breve estaremos noivos</Text>{step.content?.replace("em breve estaremos noivos", "")}</Text>
+          <Text fontSize="lg" color="brandBlue">{name}, <Text as="span" fontWeight="bold">estamos noivos</Text>{step.content?.replace("estamos noivos", "")}</Text>
+          <Image src="/images/noivado.jpeg" alt="Noivado" borderRadius="xl" mt={3} w="full" />
           <Button w="full" bgGradient="linear(to-r, brandOrange, brandYellow)" color="white" fontWeight="bold" onClick={accept}>
             SIM 💖
           </Button>

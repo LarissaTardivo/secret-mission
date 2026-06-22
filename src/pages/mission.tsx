@@ -1,8 +1,7 @@
-import { useState, useRef, useEffect } from "react";
+﻿import { useState, useRef, useEffect } from "react";
 import { Box, Flex, useColorModeValue } from "@chakra-ui/react";
 import { useSteps } from "chakra-ui-steps";
 import { motion, AnimatePresence } from "framer-motion";
-import VideoStep from "../components/video-step";
 import GameStep from "../components/game-step";
 import DrawStep from "../components/draw-step";
 import MissionStep from "../components/mission-step";
@@ -28,9 +27,9 @@ const Mission = () => {
   };
 
   const finalContent = {
-    man: "em breve estaremos noivos e queremos saber se você aceita ser nosso padrinho de Casamento?",
-    woman: "em breve estaremos noivos e queremos saber se você aceita ser nossa madrinha de Casamento?",
-    couple: "em breve estaremos noivos e queremos saber se vocês aceitam ser nossos padrinhos de Casamento?",
+    man: "estamos noivos e queremos saber se você aceita ser nosso padrinho de Casamento?",
+    woman: "estamos noivos e queremos saber se você aceita ser nossa madrinha de Casamento?",
+    couple: "estamos noivos e queremos saber se vocês aceitam ser nossos padrinhos de Casamento?",
   };
 
   const sharedProps = { name, setName, nextStep, accept: handleAccept, accepted, personType, setPersonType };
@@ -97,10 +96,6 @@ const Mission = () => {
           {...sharedProps}
         />
       ),
-    },
-    {
-      label: "Missão",
-      content: <VideoStep src="/videos/secret-mission-video.mp4" nextStep={nextStep} />,
     },
     {
       label: "Mensagem",
